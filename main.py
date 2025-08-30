@@ -27,7 +27,7 @@ def view(fer):
         for line in text:
             login, password = line.split('|')
             decrypted_password = fer.decrypt(password.encode()).decode()
-            print(f"Логин:{login} | Пароль:{decrypted_password}")
+            print(f"Логин: {login} | Пароль: {decrypted_password}")
 
 
 def main():
