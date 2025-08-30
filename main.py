@@ -22,12 +22,21 @@ def add(fer):
         file.write(f"{login}|{encrypted_password}\n")
 
 
+def view(fer):
+    with open("passwords.txt", "r") as text:
+        for line in text:
+            login, password = line.split('|')
+            decrypted_password = fer.decrypt(password.encode()).decode()
+            print(f"Логин:{login} | Пароль:{decrypted_password}")
+
+
 def main():
     if not os.path.exists("key.key"):
         write_key()
     key = load_key()
     fer = Fernet(key)
     add(fer)
+    view(fer)
 
 
 if __name__ == '__main__':
