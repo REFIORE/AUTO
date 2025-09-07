@@ -30,13 +30,25 @@ def view(fer):
             print(f"Логин: {login} | Пароль: {decrypted_password}")
 
 
+def action_selection(fer):
+    status = False
+    while not status:
+        choice = input("Хотите добавить новый пароль или посмотреть уже существующие \n1. Посмотреть, \n2. Добавить? \n3. Выйти\n")
+        choice = int(choice)
+        if choice == 1:
+            view(fer)
+        elif choice == 2:
+            add(fer)
+        else:
+            status = True
+
+
 def main():
     if not os.path.exists("key.key"):
         write_key()
     key = load_key()
     fer = Fernet(key)
-    add(fer)
-    view(fer)
+    action_selection(fer)
 
 
 if __name__ == '__main__':
